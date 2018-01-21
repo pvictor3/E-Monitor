@@ -4,7 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -26,7 +28,14 @@ public class DetailActivity extends AppCompatActivity {
         longitudeTextView.setText(earthquake.getLongitude());
         latitudeTextView.setText(earthquake.getLatitude());
         placeTextView.setText(earthquake.getPlace());
-        dateTextView.setText(earthquake.getDate());
+        dateTextView.setText(getStringDateFromTime(earthquake.getDate()));
+    }
 
+    private String getStringDateFromTime(long time){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MMMM/yyyy - H:m:s", Locale.getDefault());
+
+        Date date = new Date(time);
+
+        return simpleDateFormat.format(date);
     }
 }

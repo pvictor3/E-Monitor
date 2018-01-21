@@ -4,13 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Earthquake implements Parcelable {
-    private int magnitude;
+    private double magnitude;
     private String place;
-    private String date;
+    private long date;
     private String longitude;
     private String latitude;
 
-    public Earthquake(int magnitude, String place, String date, String longitude, String latitude){
+    public Earthquake(double magnitude, String place, long date, String longitude, String latitude){
         this.magnitude = magnitude;
         this.place = place;
         this.date = date;
@@ -18,20 +18,20 @@ public class Earthquake implements Parcelable {
         this.latitude = latitude;
     }
 
-    public int getMagnitude(){return magnitude;}
+    public double getMagnitude(){return magnitude;}
 
     public String getPlace(){return place;}
 
-    public String getDate(){return date;}
+    public long getDate(){return date;}
 
     public String getLongitude(){return longitude;}
 
     public String getLatitude(){return latitude;}
 
     protected Earthquake(Parcel in) {
-        magnitude = in.readInt();
+        magnitude = in.readDouble();
         place = in.readString();
-        date = in.readString();
+        date = in.readLong();
         longitude = in.readString();
         latitude = in.readString();
     }
@@ -43,9 +43,9 @@ public class Earthquake implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(magnitude);
+        dest.writeDouble(magnitude);
         dest.writeString(place);
-        dest.writeString(date);
+        dest.writeLong(date);
         dest.writeString(longitude);
         dest.writeString(latitude);
     }
